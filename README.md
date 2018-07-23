@@ -1,21 +1,71 @@
-# myvue
+# 暮光网项目前端
+## 项目名称：《暮光网》
+## 项目介绍：《暮光网》是一个电影门户网，属于个人项目，用于前后端技术研究
+## 项目开发周期：201804-2018-06
+## 项目前端技术栈：vue,vue-cli,vuex,vue-router,axios,moment.js
+## 项目功能：
+    会员登陆注册，
+    会员后台管理，
+    会员积分，
+    网站后台管理，
+    评论点赞，
+    收藏，
+    网站数据录入，
+    多媒体文件上传，
+    多媒体文件在线播放，
+    站内模糊搜索
+## 项目路由：
+    / 首页
+    /news/:category?' 一级新闻页
+    /newsdetail/:newstype/:id 新闻详情页
+    /newslist/:category 二级新闻页
+    /movienewslist/:id 影片新闻页
+    /discovery 影片发现页
+    /guide 观影指南页
+    /rankdetail/:id 排行榜详情页
+    /movie/:id 电影详情页
+    /moviepic 电影图片预览页
+    /trailer 电影预告片播放页
+    /community 社区页
+    /search 搜索结果页
+    /register 注册页
+    /user/:id 会员后台管理页
+    /mtimetop 暮光TOP100排行页
+    /mtimeshop 商城页（未开发）
+    /admin 网站后台管理首页
+    /admin/addmovie 网站后台管理影片信息录入页
+    /admin/addnews 网站后台管理新闻录入页
+    /admin/addrank 网站后台排行榜录入页
+    /admin/addad 网站后台广告位编辑页
+    /admin/addbanner 网站后台轮播添加页
+    
+## 前端开发中遇到的困难
+### vuex store切割后，state,getters,actions的参数的含义及如何访问全局状态
+    解决方法：因为暮光网组件较多，所有状态集中在一起会使得状态对象非常拥挤，可读性差，所以尝试拆分状态树。
+    熟读vuex文档，多读几遍，写了小demo测试测试
 
-> A Vue.js project
+### 功能组件的封装
+    解决方法：特别是多场景适用的功能组件，封装起来不是那么顺畅，有一个图片上传的组件，支持多图和单图上传两种模式并且可预览上传的图片，需要支持撤回选择，过滤重复选择的图片以及上传文件个数限制
+    1.首先需要设计好布局，不同的模式布局不同，
+    2.然后设计好默认数据的属性，当进行不同的操作或不同的功能需要实现的时候应该修改哪个默认数据的属性要规划好
+    3.还需要考虑到怎么向父组件emit事件能够降低或消除组件间的耦合
+    4.如果组件有在同一模块下复用的情况，还需要注意refs和id的差异化设置
 
-## Build Setup
+### 后台数据更新后如何在不刷新页面的前提下更新视图
+    解决方法：可以将之前从后台取回的数据进行加工，将新增数据添加至本地数据然后实现一种模拟形式的数据更新，也可以手动更改该组件的:key，让组件重新渲染，重新向后台发起请求以更新该组件的最新数据
+    
+### 对组件中渲染的数据进行处理
+    解决方法：有些数据拿到后不能直接使用{{}}渲染在DOM节点中，需要经过一些处理后才符合要求，那么filters是一个很好的工具
 
-``` bash
-# install dependencies
-npm install
+## 总结
+    1.前端开发的时候遇到的困难相对较少，把握好组件之间的数据流向，把握好vuex的状态以及状态更新的规则，剩下的就是获取数据和渲染数据了，省略了大部分的DOM操作确实是为前端开发节省了不少开发时间
+    2.组件的嵌套，在什么地方发起请求（如组件中？父组件中？还是vuex中），各个生命周期函数使用的场合可以进一步加深理解和做出更合理的规划，做到开发中思绪行云流水最好
+    3.一个方法有一个方法的作用，类似于兵来将挡，水来土掩
 
-# serve with hot reload at localhost:8080
-npm run dev
 
-# build for production with minification
-npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+    
+    
+    
